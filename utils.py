@@ -32,3 +32,11 @@ def rm_digit(s):
 def rm_url(s):
   s = ''.join(re.sub(r'http\S+','',s))
   return s
+
+def slash(s):
+  s = ''.join(re.sub(r'\S*/\S*\s?','',s))   
+  return s
+
+def tab(s):
+  s = ''.join(re.sub(r'\S*\\S*\s?','',s))   
+  return s
