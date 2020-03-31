@@ -34,9 +34,17 @@ def rm_url(s):
   return s
 
 def slash(s):
-  s = ''.join(re.sub(r'\S*/\S*\s?','',s))   
+  s = ''.join(re.sub(r'\S*/\S*\s?','',s))
   return s
 
 def tab(s):
-  s = ''.join(re.sub(r'\S*\\S*\s?','',s))   
+  s = ''.join(re.sub(r'\S*\\S*\s?','',s))
+  return s
+
+def content(s):
+  s = ''.join(re.sub(r'.+?(?=Subject:)','',s))   #^[^:-].*?:\s*
+  return s
+
+def spaces(s):
+  s = ' '.join(s.split())
   return s
