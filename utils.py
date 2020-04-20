@@ -87,3 +87,7 @@ def extract(st):
   else:
     return None
 
+def read_words(filename):
+    with tf.gfile.GFile(filename, 'r') as f:
+        return f.read().replace('\n', '<eos>').split()
+

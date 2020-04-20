@@ -42,9 +42,9 @@ df['text'] = df['text'].apply(rm_colon_word)
 df['text'] = df['text'].apply(rm_colon)
 df['text'] = df['text'].apply(rm_spaces)
 
+df['text'] = df['text'].apply(remove_ent)  
 df['text'] = df['text'].apply(remove_ent)
-df['text'] = df['text'].apply(remove_ent)
-df['text'] = df['text'].apply(remove_ent)
+df['text'] = df['text'].apply(remove_ent)  # To remove the entities missed in the previous runs.
 
 
 df = df[df.text != 'Thanks']  
