@@ -113,4 +113,24 @@ def file_to_word_ids(filename, word_to_id):
     return [word_to_id[word] for word in data if word in word_to_id]
 
 
+def load_data():
+    train_path = os.path.join(data_path, 'ptb.train.txt')
+    valid_path = os.path.join(data_path, 'ptb.valid.txt')
+
+    word_to_id = build_vocab(train_path)
+    train_data = file_to_word_ids(train_path, word_to_id)
+    valid_data = file_to_word_ids(valid_path, word_to_id)
+    total_words = len(word_to_id)
+    reversed_dictionary = dict(zip(word_to_id.values(), word_to_id.keys()))
+    dictionary = {value: key for key, value in reversed_dictionary.items()}
+
+    print('\ntotalwords : ', total_words, '\n')
+    return train_data, valid_data, total_words, reversed_dictionary, dictionary
+
+
+def save_json(dictionary, filename):
+    with open(filename, 'w') as fp:
+        json.dump(dictionary, fp)
+
+
 
