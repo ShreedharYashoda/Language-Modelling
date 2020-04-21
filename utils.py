@@ -2,6 +2,8 @@ import string
 import re
 import json
 import tensorflow as tf
+import collections
+import os
 
 remove = string.punctuation
 remove = remove.replace(":", "") # don't remove colons
@@ -96,7 +98,19 @@ def read_words(filename):
 def load_dict(path):
   return json.loads(open(path).read())
 
+def build_vocab(filename):
+    data = read_words(filename)
+    counter = collections.Counter(data)
+    count_pairs = sorted(counter.items(), key=lambda x: (-x[1], x[0]))
+    words, _ = list(zip(*count_pairs))
+    word_to_id = dict(zip(words, range(len(words))))
 
+    return word_to_id
+
+
+def file_to_word_ids(filename, word_to_id):
+    data = read_words(filename)
+    return [word_to_id[word] for word in data if word in word_to_id]
 
 
 
