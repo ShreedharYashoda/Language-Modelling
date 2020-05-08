@@ -1,0 +1,4 @@
+tensorflow
+tensorflowjs
+h5py
+keras
